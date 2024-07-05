@@ -1,6 +1,7 @@
+import os
 import json
 import sys
-from scapy.all import rdpcap, TCP, Raw, IP, Ether
+from scapy.all import rdpcap, TCP, Raw, IP
 
 def parse_smb2_header(payload):
     if len(payload) < 64:
@@ -46,20 +47,9 @@ def main(pcap_file):
     smb2_info_list = []
 
     for packet in scapy_cap:
-        # Ensure the packet is an Ethernet frame and has an IP layer
-        if packet.haslayer(Ether) and packet.haslayer(IP):
-            # Decode Ethernet layer to IP layer
-            packet = packet[Ether]
-            if packet.haslayer(IP):
-                # Decode IP layer to TCP layer
-                packet = packet[IP]
-                if packet.haslayer(TCP):
-                    # Decode TCP layer to Raw layer
-                    packet = packet[TCP]
-                    if packet.haslayer(Raw):
-                        smb2_info = extract_smb2_info(packet)
-                        if smb2_info:
-                            smb2_info_list.append(smb2_info)
+        smb2_info = extract_smb2_info(packet)
+        if smb2_info:
+            smb2_info_list.append(smb2_info)
 
     output_metadata_file = "smb2_metadata.json"
     with open(output_metadata_file, 'w') as f:
@@ -68,7 +58,7 @@ def main(pcap_file):
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: python3 detect_smb2_packets.py <pcap_file>")
+        print("Usage: python3 extract_smb2_metadata.py <pcap_file>")
         sys.exit(1)
     pcap_file = sys.argv[1]
     main(pcap_file)
