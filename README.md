@@ -36,7 +36,7 @@ SMB2-Packet-Extractor/
 1. Clone the repository:
     ```sh
     git clone <repository-url>
-    cd SMB2-Packet-Extractor
+    cd SOC-Packet-analyst/smb_extractor/
     ```
 
 2. Install the required libraries:
