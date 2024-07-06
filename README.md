@@ -113,5 +113,3 @@ Contains utility functions used in `extract_attachments.py`.
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ---
-
-This README file provides comprehensive information about the project, including its structure, usage, and detailed descriptions of each component.
