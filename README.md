@@ -101,13 +101,6 @@ Contains utility functions used in `extract_attachments.py`.
 - Make sure the pcap file is in the correct format and contains SMB2 traffic.
 - If you encounter encoding issues, check the format of the buffer data in the JSON file.
 
-## Contributing
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature-branch`).
-3. Make your changes.
-4. Commit your changes (`git commit -am 'Add new feature'`).
-5. Push to the branch (`git push origin feature-branch`).
-6. Create a new Pull Request.
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
