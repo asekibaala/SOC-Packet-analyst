@@ -1,0 +1,135 @@
+{
+    "timestamp": "1403194573.483536",
+    "layers": [
+        {
+            "type": "Ether",
+            "fields": {
+                "dst": "<DestMACField (Ether).dst>",
+                "src": "<SourceMACField (Ether).src>",
+                "type": "<XShortEnumField (Ether).type>"
+            }
+        },
+        {
+            "type": "IP",
+            "fields": {
+                "version": "<BitField (IP,IPerror,IPv46).version>",
+                "ihl": "<BitField (IP,IPerror,IPv46).ihl>",
+                "tos": "<XByteField (IP,IPerror,IPv46).tos>",
+                "len": "<ShortField (IP,IPerror,IPv46).len>",
+                "id": "<ShortField (IP,IPerror,IPv46).id>",
+                "flags": "<FlagsField (IP,IPerror,IPv46).flags>",
+                "frag": "<BitField (IP,IPerror,IPv46).frag>",
+                "ttl": "<ByteField (IP,IPerror,IPv46).ttl>",
+                "proto": "<ByteEnumField (IP,IPerror,IPv46).proto>",
+                "chksum": "<XShortField (IP,IPerror,IPv46).chksum>",
+                "src": "<scapy.fields.Emph object at 0x1122b68d0>",
+                "dst": "<scapy.fields.Emph object at 0x1122b6990>",
+                "options": "<PacketListField (IP,IPerror,IPv46).options>"
+            }
+        },
+        {
+            "type": "TCP",
+            "fields": {
+                "sport": "<ShortEnumField (TCP,TCPerror).sport>",
+                "dport": "<ShortEnumField (TCP,TCPerror).dport>",
+                "seq": "<IntField (TCP,TCPerror).seq>",
+                "ack": "<IntField (TCP,TCPerror).ack>",
+                "dataofs": "<BitField (TCP,TCPerror).dataofs>",
+                "reserved": "<BitField (TCP,TCPerror).reserved>",
+                "flags": "<FlagsField (TCP,TCPerror).flags>",
+                "window": "<ShortField (TCP,TCPerror).window>",
+                "chksum": "<XShortField (TCP,TCPerror).chksum>",
+                "urgptr": "<ShortField (TCP,TCPerror).urgptr>",
+                "options": "<TCPOptionsField (TCP,TCPerror).options>"
+            }
+        },
+        {
+            "type": "NBTSession",
+            "fields": {
+                "TYPE": "<ByteEnumField (NBTSession).TYPE>",
+                "RESERVED": "<BitField (NBTSession).RESERVED>",
+                "LENGTH": "<BitField (NBTSession).LENGTH>"
+            }
+        },
+        {
+            "type": "SMB2_Header",
+            "fields": {
+                "Start": "<StrFixedLenField (SMB2_Header).Start>",
+                "StructureSize": "<LEShortField (SMB2_Header).StructureSize>",
+                "CreditCharge": "<LEShortField (SMB2_Header).CreditCharge>",
+                "Status": "<LEIntEnumField (SMB2_Header).Status>",
+                "Command": "<LEShortEnumField (SMB2_Header).Command>",
+                "CreditsRequested": "<LEShortField (SMB2_Header).CreditsRequested>",
+                "Flags": "<FlagsField (SMB2_Header).Flags>",
+                "NextCommand": "<XLEIntField (SMB2_Header).NextCommand>",
+                "MID": "<LELongField (SMB2_Header).MID>",
+                "AsyncId": "<scapy.fields.ConditionalField object at 0x112bb4d70>",
+                "PID": "<scapy.fields.ConditionalField object at 0x112bb4e60>",
+                "TID": "<scapy.fields.ConditionalField object at 0x112bb4f50>",
+                "SessionId": "<LELongField (SMB2_Header).SessionId>",
+                "SecuritySignature": "<XStrFixedLenField (SMB2_Header).SecuritySignature>"
+            }
+        },
+        {
+            "type": "SMB2_Create_Request",
+            "fields": {
+                "StructureSize": "<XLEShortField (SMB2_Create_Request).StructureSize>",
+                "ShareType": "<ByteField (SMB2_Create_Request).ShareType>",
+                "RequestedOplockLevel": "<ByteEnumField (SMB2_Create_Request).RequestedOplockLevel>",
+                "ImpersonationLevel": "<LEIntEnumField (SMB2_Create_Request).ImpersonationLevel>",
+                "SmbCreateFlags": "<LELongField (SMB2_Create_Request).SmbCreateFlags>",
+                "Reserved": "<LELongField (SMB2_Create_Request).Reserved>",
+                "DesiredAccess": "<FlagsField (SMB2_Create_Request).DesiredAccess>",
+                "FileAttributes": "<FlagsField (SMB2_Create_Request).FileAttributes>",
+                "ShareAccess": "<FlagsField (SMB2_Create_Request).ShareAccess>",
+                "CreateDisposition": "<LEIntEnumField (SMB2_Create_Request).CreateDisposition>",
+                "CreateOptions": "<FlagsField (SMB2_Create_Request).CreateOptions>",
+                "NameBufferOffset": "<XLEShortField (SMB2_Create_Request).NameBufferOffset>",
+                "NameLen": "<LEShortField (SMB2_Create_Request).NameLen>",
+                "CreateContextsBufferOffset": "<XLEIntField (SMB2_Create_Request).CreateContextsBufferOffset>",
+                "CreateContextsLen": "<LEIntField (SMB2_Create_Request).CreateContextsLen>",
+                "Buffer": "<_NTLMPayloadField (SMB2_Create_Request).Buffer>"
+            }
+        },
+        {
+            "type": "SMB2_Header",
+            "fields": {
+                "Start": "<StrFixedLenField (SMB2_Header).Start>",
+                "StructureSize": "<LEShortField (SMB2_Header).StructureSize>",
+                "CreditCharge": "<LEShortField (SMB2_Header).CreditCharge>",
+                "Status": "<LEIntEnumField (SMB2_Header).Status>",
+                "Command": "<LEShortEnumField (SMB2_Header).Command>",
+                "CreditsRequested": "<LEShortField (SMB2_Header).CreditsRequested>",
+                "Flags": "<FlagsField (SMB2_Header).Flags>",
+                "NextCommand": "<XLEIntField (SMB2_Header).NextCommand>",
+                "MID": "<LELongField (SMB2_Header).MID>",
+                "AsyncId": "<scapy.fields.ConditionalField object at 0x112bb4d70>",
+                "PID": "<scapy.fields.ConditionalField object at 0x112bb4e60>",
+                "TID": "<scapy.fields.ConditionalField object at 0x112bb4f50>",
+                "SessionId": "<LELongField (SMB2_Header).SessionId>",
+                "SecuritySignature": "<XStrFixedLenField (SMB2_Header).SecuritySignature>"
+            }
+        },
+        {
+            "type": "SMB2_Query_Info_Request",
+            "fields": {
+                "StructureSize": "<XLEShortField (SMB2_Query_Info_Request).StructureSize>",
+                "InfoType": "<ByteEnumField (SMB2_Query_Info_Request).InfoType>",
+                "FileInfoClass": "<ByteEnumField (SMB2_Query_Info_Request).FileInfoClass>",
+                "OutputBufferLength": "<LEIntField (SMB2_Query_Info_Request).OutputBufferLength>",
+                "InputBufferOffset": "<XLEIntField (SMB2_Query_Info_Request).InputBufferOffset>",
+                "InputLen": "<LEIntField (SMB2_Query_Info_Request).InputLen>",
+                "AdditionalInformation": "<FlagsField (SMB2_Query_Info_Request).AdditionalInformation>",
+                "Flags": "<FlagsField (SMB2_Query_Info_Request).Flags>",
+                "FileId": "<PacketField (SMB2_Query_Info_Request).FileId>",
+                "Buffer": "<_NTLMPayloadField (SMB2_Query_Info_Request).Buffer>"
+            }
+        },
+        {
+            "type": "Padding",
+            "fields": {
+                "load": "<StrField (Raw,Padding).load>"
+            }
+        }
+    ]
+}
