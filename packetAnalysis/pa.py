@@ -1,97 +1,20 @@
-import os
-import json
-import sys
-from scapy.all import *
-from impacket.smb3structs import SMB2Packet, SMB2_FLAGS_REPLY, SMB2_WRITE, SMB2_READ
+from scapy.all import rdpcap, Raw
 
-def parse_pcap(file_path):
-    packets = rdpcap(file_path)
-    smb2_packets = []
+# Load the pcap file
+pcap_file = "smb.pcap"  # Change this to your actual file path
+packets = rdpcap(pcap_file)
 
-    for packet in packets:
-        if packet.haslayer(TCP):
-            data = bytes(packet[TCP].payload)
-            if len(data) > 0 and data[0:4] == b'\xfeSMB':
-                smb2_packets.append(packet)
+# Count total number of packets
+total_packets = len(packets)
+print(f"Total packets: {total_packets}")
 
-    return smb2_packets
+# Filter for packets that start with SMB2 header (0xFE 'S' 'M' 'B')
+smb2_packets = [pkt for pkt in packets if pkt.haslayer(Raw) and pkt[Raw].load.startswith(b'\xfeSMB')]
 
-def extract_smb_data(smb2_packets):
-    extracted_files = []
-    metadata = []
+# Count total number of SMB2 packets
+total_smb2_packets = len(smb2_packets)
+print(f"Total SMB2 packets: {total_smb2_packets}")
 
-    for packet in smb2_packets:
-        data = bytes(packet[TCP].payload)
-        smb2_packet = SMB2Packet(data)
-        
-        if smb2_packet['Flags'] & SMB2_FLAGS_REPLY:
-            continue
-        
-        if smb2_packet['Command'] == SMB2_WRITE:
-            file_name = "unknown_write.bin"
-            file_size = len(smb2_packet['Data'])
-            src_ip = packet[IP].src
-            src_port = packet[TCP].sport
-            dst_ip = packet[IP].dst
-            dst_port = packet[TCP].dport
-
-            file_info = {
-                "file_name": file_name,
-                "file_size": file_size,
-                "source_ip_address": src_ip,
-                "source_port_number": src_port,
-                "destination_ip_address": dst_ip,
-                "destination_port_number": dst_port
-            }
-            metadata.append(file_info)
-            
-            with open(os.path.join("extracted_files", file_name), "wb") as f:
-                f.write(smb2_packet['Data'])
-                extracted_files.append(file_name)
-        
-        elif smb2_packet['Command'] == SMB2_READ:
-            file_name = "unknown_read.bin"
-            file_size = len(smb2_packet['Data'])
-            src_ip = packet[IP].src
-            src_port = packet[TCP].sport
-            dst_ip = packet[IP].dst
-            dst_port = packet[TCP].dport
-
-            file_info = {
-                "file_name": file_name,
-                "file_size": file_size,
-                "source_ip_address": src_ip,
-                "source_port_number": src_port,
-                "destination_ip_address": dst_ip,
-                "destination_port_number": dst_port
-            }
-            metadata.append(file_info)
-
-            with open(os.path.join("extracted_files", file_name), "wb") as f:
-                f.write(smb2_packet['Data'])
-                extracted_files.append(file_name)
-    
-    return extracted_files, metadata
-
-def save_metadata(metadata):
-    with open("metadata.json", "w") as f:
-        json.dump(metadata, f, indent=4)
-
-def main():
-    if len(sys.argv) != 2:
-        print("Usage: python3 script.py <pcap_file>")
-        sys.exit(1)
-
-    pcap_file = sys.argv[1]
-    if not os.path.exists("extracted_files"):
-        os.makedirs("extracted_files")
-
-    smb2_packets = parse_pcap(pcap_file)
-    extracted_files, metadata = extract_smb_data(smb2_packets)
-    save_metadata(metadata)
-
-    print(f"Extracted files: {extracted_files}")
-    print("Metadata saved to metadata.json")
-
-if __name__ == "__main__":
-    main()
+# Print first few SMB2 packets for inspection
+for i, pkt in enumerate(smb2_packets[:5]):
+    print(f"SMB2 Packet {i + 1}: {pkt[Raw].load[:100].hex()}")

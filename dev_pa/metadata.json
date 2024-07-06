@@ -1,0 +1,20 @@
+[
+    {
+        "file_name": "attachment_1950_SMB2_READ.bin",
+        "file_size": 0,
+        "source_ip": "192.168.1.78",
+        "source_port": "55770",
+        "destination_ip": "192.168.1.53",
+        "destination_port": "microsoft_ds",
+        "timestamp": "2001-10-20 06:45:45"
+    },
+    {
+        "file_name": "attachment_1950_SMB2_READ.bin",
+        "file_size": 105599,
+        "source_ip": "192.168.1.53",
+        "source_port": "microsoft_ds",
+        "destination_ip": "192.168.1.78",
+        "destination_port": "55770",
+        "timestamp": "1970-04-05 01:41:20"
+    }
+]
